@@ -1,8 +1,9 @@
 import React from 'react';
-import Hero from '../components/Hero';
 import Banner from '../components/Banner';
+import Hero from '../components/Hero';
 import {Link} from 'react-router-dom';
 import Services from '../components/Services';
+import FeaturesRoom from '../components/FeaturesRoom';
 
 
 const HomePage = () => {
@@ -19,6 +20,8 @@ const HomePage = () => {
             </Hero>
             
             <Services />
+
+            <FeaturesRoom />
         </div>
         
     )
