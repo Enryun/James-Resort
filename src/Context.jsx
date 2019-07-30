@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import items from './data';
+import Items from './data';
 
 const RoomContext = React.createContext();
 
@@ -28,7 +28,7 @@ class RoomProvider extends Component {
     }
 
     componentDidMount() {
-        let rooms = this.formatData(items);
+        let rooms = this.formatData(Items);
         console.log(rooms);
         let featuredRooms = rooms.filter(room => room.featured === true);
 
@@ -56,5 +56,13 @@ class RoomProvider extends Component {
 }
 
 const RoomConsumer = RoomContext.Consumer;
+
+export function withRoomConsumer (Component) {
+    return function ConsumerWrapper(props) {
+        return <RoomConsumer>
+            {value => <Component {...props} context={value} />}
+        </RoomConsumer>
+    }
+}
 
 export {RoomConsumer, RoomProvider, RoomContext};
