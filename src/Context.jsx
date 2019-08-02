@@ -61,15 +61,63 @@ class RoomProvider extends Component {
     }
 
     handleChange = event => {
-        const type = event.target.type;
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = event.target.name;
-        const value = event.target.value;
-        console.log(type, name, value);
         
+        this.setState({
+            [name]: value,          
+        }, this.filterRooms)
     }
 
     filterRooms = () => {
-        console.log('Hi')
+        let {rooms,
+             type,
+             capacity,
+             price,
+             minSize,
+             maxSize,
+             breakfast,
+             pets   
+        } = this.state;
+
+        //All the Rooms
+        let tempRooms = [...rooms];
+
+        //Transform value for Guest, Price
+        capacity = parseInt(capacity);
+        price = parseInt(price);
+
+        //filter by Type
+        if (type !== 'all') {
+            tempRooms = tempRooms.filter(room => room.type === type)
+        };
+
+        //filter by Capacity 
+        if (capacity !== 1) {
+            tempRooms = tempRooms.filter(room => room.capacity >= capacity)
+        }
+
+        //filter by Price
+        tempRooms = tempRooms.filter(room => room.price <= price)
+
+        //filter by Size
+        tempRooms = tempRooms.filter(room => room.size >= minSize && room.size <= maxSize)
+
+        //filter by Breakfast
+        if (breakfast) {
+            tempRooms = tempRooms.filter(room => room.breakfast === true)
+        }
+
+        //filter by Pets
+        if (pets) {
+            tempRooms = tempRooms.filter(room => room.pets === true)
+        }
+
+        //Change State
+        this.setState({
+            sortedRooms: tempRooms
+        })
     }
 
     render() {
@@ -86,6 +134,8 @@ class RoomProvider extends Component {
 
 const RoomConsumer = RoomContext.Consumer;
 
+
+//High Order Fuction Way
 export function withRoomConsumer (Component) {
     return function ConsumerWrapper(props) {
         return <RoomConsumer>

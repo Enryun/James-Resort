@@ -5,6 +5,7 @@ import Loading from './Loading';
 import {withRoomConsumer} from '../Context';
 
 function RoomsContainer ({context}) {
+    
     const {loading, sortedRooms, rooms} = context;
 
     if (loading) {
@@ -19,8 +20,10 @@ function RoomsContainer ({context}) {
     )
 }
 
-
+//High Order Function Way
 export default withRoomConsumer(RoomsContainer);
+
+
 // Context API Document Way
 
 // import React from 'react';
