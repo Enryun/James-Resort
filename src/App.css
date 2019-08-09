@@ -485,6 +485,12 @@ h6 {
   background: transparent;
   font-size: 1rem;
 }
+
+.footer {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .size-inputs {
   display: flex;
 }

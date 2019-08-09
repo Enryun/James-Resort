@@ -15,8 +15,6 @@ export default class FeaturesRoom extends Component {
             return <Room key={room.id} room={room} />
         })
     
-        
-        
         return (
             <section className='featured-rooms'>
 

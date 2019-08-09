@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import RoomsPage from './pages/RoomsPage';
 import SingleRoomPage from './pages/SingleRoomPage.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
+import Footer from './components/Footer';
 
 import NavBar from './components/NavBar';
 
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/rooms/:slug" component={SingleRoomPage} />
         <Route component={ErrorPage} />
       </Switch>
+      <Footer />
     </div>
   );
 }
